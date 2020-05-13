@@ -128,3 +128,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/miniprogram/apps/common/migrations/
+/miniprogram/apps/core/migrations/
