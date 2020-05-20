@@ -15,35 +15,37 @@ class ParamsProcess:
     def __decode_id(self, common_id):
         return self.hash_func.decode(common_id)
 
-    def auto_decode(self, params_json, json_key_list):
+    def auto_decode(self, *args, **kwargs):
         """
         参数自动解密
-        :param params_json: 参数字典
-        :param json_key_list: 需要解密json的key列表
         :return: 解密后的json数据
         """
-        for params in json_key_list:
-            encode_id = params_json.get(params)
-            if encode_id is None:
-                pass
-            else:
-                params_json['params'] = self.__decode_id(encode_id)
-        return params_json
+        try:
+            for params in args[0]:
+                encode_id = kwargs.get(params)
+                if encode_id is None:
+                    pass
+                else:
+                    kwargs['params'] = self.__decode_id(encode_id)
+        except IndexError:
+            raise IndexError("Need parse key list")
+        return kwargs
 
-    def auto_encode(self, params_json, json_key_list):
+    def auto_encode(self, *args, **kwargs):
         """
         参数自动加密
-        :param params_json: 参数字典
-        :param json_key_list: 需要加密json的key列表
         :return: 解密后的json数据
         """
-        for params in json_key_list:
-            decode_id = params_json.get(params)
-            if decode_id is None:
-                pass
-            else:
-                params_json['params'] = self.__encode_id(decode_id)
-        return params_json
+        try:
+            for params in args(0):
+                decode_id = kwargs.get(params)
+                if decode_id is None:
+                    pass
+                else:
+                    kwargs['params'] = self.__encode_id(decode_id)
+        except IndexError:
+            raise IndexError("Need parse key list")
+        return kwargs
 
 
 class TimeRelation:
