@@ -37,7 +37,7 @@ class ParamsProcess:
         :return: 解密后的json数据
         """
         try:
-            for params in args(0):
+            for params in args[0]:
                 decode_id = kwargs.get(params)
                 if decode_id is None:
                     pass
